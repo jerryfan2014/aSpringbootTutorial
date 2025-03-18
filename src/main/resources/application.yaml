@@ -1,0 +1,5 @@
+#修改tomcat启动端口为80
+server:
+  port: 80
+
+
