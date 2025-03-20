@@ -1,8 +1,14 @@
 package com.kangda.helper;
 
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RestController;
 
-@Component
+//@Component
+//@RestController
+@Service
+//@Repository
 public class PrintHelper {
 
     public String print(String msg) {
