@@ -1,4 +1,4 @@
-
+练习L11:配置数据库开发环境，使用MP完成User数据查询
 1、pom.xml中添加mysql、mp、lombom依赖
 2、application.yaml文件中配置数据源
 3、新建User.class
