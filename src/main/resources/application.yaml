@@ -10,4 +10,9 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
 
 
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
 
