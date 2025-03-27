@@ -65,7 +65,17 @@ public class MPTester {
         user.setName("lisa");
         user.setEmail("lisa@kdvtc.edu.cn");
         //user.setAddrId(null);
+        int result = userMapper.insert(user);
+        System.out.println(result);
+    }
 
+    @Test
+    public void testInsertAutoIncrement() {
+        //插入一条新数据到数据库, id 为字增长
+        User user = new User();
+//        user.setId(14L);
+        user.setName("小明3");
+        user.setEmail("xiaoming@kdvtc.edu.cn");
         int result = userMapper.insert(user);
         System.out.println(result);
     }
@@ -80,8 +90,26 @@ public class MPTester {
 
         int cnt = userMapper.deleteByMap(param);
         System.out.println("删除记录数：" + cnt);
-
     }
+
+    @Test
+    public void testUpdate() {
+        // 直接修改对象，没有判断
+        //User user = new User();
+
+        //先从数据库查询，要修改的对象(记录）是否存在，如果存在再操作；（rubust 健壮性）
+        User user = userMapper.selectById(8L);
+        if (user == null) {
+            throw new RuntimeException("id为8的user不存在 ");
+        }
+        user.setId(8L);
+        user.setEmail("xiaofang@kdvtc.edu.cn");
+        user.setAge(28);
+        int cnt = userMapper.updateById(user);
+        System.out.printf("修改记录：" + cnt);
+    }
+
+
 
 
 }
