@@ -1,5 +1,8 @@
 package com.kangda.cotroller;
 
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpRequest;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -7,7 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HelloController {
 
-    @RequestMapping("/hello")
+    //@RequestMapping(path = "/hello", method = HttpMethod.GET)
+    @GetMapping("/hello")
     public String hello(@RequestParam String msg){
 //        return "hello, springboooooo!";
         return msg;
