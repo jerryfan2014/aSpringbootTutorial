@@ -11,4 +11,12 @@
         ORDER BY u.id ASC
     </select>
 
+    <select id="getUserInfoByIdWithXML" >
+        SELECT u.id, u.name, u.age, u.email,
+        ua.account_type, ua.account_balance
+        FROM user u LEFT JOIN user_account ua
+        ON u.id = ua.user_id
+        WHERE u.id=#{id}
+    </select>
+
 </mapper>

@@ -55,4 +55,10 @@ public class MultiTableQueryTester {
             System.out.println(userDTO);
         }
     }
+
+    @Test
+    public void testGetUserByIdWithXML(){
+        UserDTO user = userMapper.getUserInfoByIdWithXML(2L);
+        System.out.println(user);
+    }
 }

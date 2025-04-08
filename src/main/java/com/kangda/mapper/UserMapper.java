@@ -35,5 +35,6 @@ public interface UserMapper extends BaseMapper<User> {
 
     //方法名要和UserMapper.xml文件中的某一个<select>标签的id属性值相等
     public List<UserDTO> getUserInfoWithXML();
+    public UserDTO getUserInfoByIdWithXML(Long id);
 
 }
