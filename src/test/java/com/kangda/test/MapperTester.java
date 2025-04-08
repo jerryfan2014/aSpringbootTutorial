@@ -4,14 +4,13 @@ package com.kangda.test;
 import com.kangda.mapper.UserMapper;
 import com.kangda.po.User;
 import org.junit.jupiter.api.Test;
-import org.junit.platform.commons.util.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.*;
 
 @SpringBootTest
-public class MPTester {
+public class MapperTester {
 
     @Autowired
     private UserMapper userMapper;

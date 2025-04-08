@@ -60,4 +60,10 @@ public class MPServiceTester {
     public void testEmailUpdates() {
         System.out.println(userService.updateEmails());
     }
+
+
+    @Test
+    public void testTransfer(){
+        userService.transfer(1L, 1L, 1000d);
+    }
 }
