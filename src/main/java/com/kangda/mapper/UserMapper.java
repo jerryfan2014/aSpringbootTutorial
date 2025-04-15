@@ -37,4 +37,13 @@ public interface UserMapper extends BaseMapper<User> {
     public List<UserDTO> getUserInfoWithXML();
     public UserDTO getUserInfoByIdWithXML(Long id);
 
+    //one-to-one 1对1关系
+    public User selectUserWithAddress(Long userId);
+
+    //one-to-many 1对多关系
+    public User selectUserWithAccount(Long userId);
+
+    // 同时加载one-to-one和one-to-many关系的对象
+    public User selectUserTotal(Long userId);
+
 }

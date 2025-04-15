@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
+import java.util.List;
+
 //@Data
 @TableName("user")
 public class User {
@@ -18,7 +20,27 @@ public class User {
     private Integer age;
     private String email;
 
-    private Long addrId;
+    @TableField(exist = false)
+    private UserAddress userAddress;
+
+    @TableField(exist = false)
+    private List<UserAccount> userAccountList;
+
+    public List<UserAccount> getUserAccountList() {
+        return userAccountList;
+    }
+
+    public void setUserAccountList(List<UserAccount> userAccountList) {
+        this.userAccountList = userAccountList;
+    }
+
+    public UserAddress getUserAddress() {
+        return userAddress;
+    }
+
+    public void setUserAddress(UserAddress userAddress) {
+        this.userAddress = userAddress;
+    }
 
     public Long getId() {
         return id;
@@ -52,11 +74,13 @@ public class User {
         this.email = email;
     }
 
-    public Long getAddrId() {
-        return addrId;
-    }
-
-    public void setAddrId(Long addrId) {
-        this.addrId = addrId;
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", email='" + email + '\'' +
+                '}';
     }
 }

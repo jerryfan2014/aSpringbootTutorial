@@ -3,6 +3,7 @@ package com.kangda.test;
 import com.kangda.dto.UserDTO;
 import com.kangda.mapper.UserMapper;
 import com.kangda.po.User;
+import com.kangda.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,6 +17,9 @@ public class MultiTableQueryTester {
 
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    private UserService userService;
 
     @Test
     public void testGetUserInfo(){
@@ -60,5 +64,26 @@ public class MultiTableQueryTester {
     public void testGetUserByIdWithXML(){
         UserDTO user = userMapper.getUserInfoByIdWithXML(2L);
         System.out.println(user);
+    }
+
+    @Test
+    public void testSelectUserWithAddress(){
+        User user = userMapper.selectUserWithAddress(4L);
+        if (user.getUserAddress() != null) {
+            System.out.println(user.getUserAddress().getAddress());
+        }
+    }
+
+    @Test
+    public void testSelectUserWithAccount(){
+        User user = userMapper.selectUserWithAccount(2L);
+        System.out.println(user.getUserAccountList().size());
+    }
+
+    @Test
+    public void testSelectUserTotal(){
+        User user = userService.getUserTotal(1L);
+        System.out.println(user.getUserAddress().getAddress());
+        System.out.println(user.getUserAccountList().size());
     }
 }

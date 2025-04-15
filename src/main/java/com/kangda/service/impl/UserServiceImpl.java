@@ -116,4 +116,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         userAccountMapper.updateById(userAccountTo);
         return true;
     }
+
+    @Override
+    public User getUserTotal(Long userId) {
+        return userMapper.selectUserTotal(userId);
+    }
 }

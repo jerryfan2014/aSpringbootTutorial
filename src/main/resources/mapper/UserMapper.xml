@@ -11,7 +11,7 @@
         ORDER BY u.id ASC
     </select>
 
-    <select id="getUserInfoByIdWithXML" >
+    <select id="getUserInfoByIdWithXML"  >
         SELECT u.id, u.name, u.age, u.email,
         ua.account_type, ua.account_balance
         FROM user u LEFT JOIN user_account ua
@@ -19,4 +19,74 @@
         WHERE u.id=#{id}
     </select>
 
+    <select id="selectUserWithAddress" resultMap="userWithAddress">
+        SELECT u.*,
+        addr.id as addr_id, addr.user_id, addr.address, addr.post_code
+        FROM user u LEFT JOIN user_address addr
+        ON u.id = addr.user_id
+        WHERE u.id = #{userId}
+    </select>
+    <resultMap id="userWithAddress" type="com.kangda.po.User">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="age" column="age"/>
+        <result property="email" column="email"/>
+        <association property="userAddress" javaType="com.kangda.po.UserAddress">
+            <id property="id" column="addr_id"/>
+            <result property="userId" column="user_Id"/>
+            <result property="address" column="address"/>
+            <result property="postCode" column="post_code"/>
+        </association>
+    </resultMap>
+
+    <select id="selectUserWithAccount" resultMap="userWithAccount">
+        SELECT u.*,
+        acc.id as acc_id, acc.user_id, acc.account_type , acc.account_balance
+        FROM user u LEFT JOIN user_account acc
+        ON u.id = acc.user_id
+        WHERE u.id = #{userId}
+    </select>
+    <resultMap id="userWithAccount" type="com.kangda.po.User">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="age" column="age"/>
+        <result property="email" column="email"/>
+        <collection property="userAccountList" ofType="com.kangda.po.UserAccount">
+            <id property="id" column="acc_id"/>
+            <result property="userId" column="user_id"/>
+            <result property="accountType" column="account_type"/>
+            <result property="accountBalance" column="account_balance"/>
+        </collection>
+    </resultMap>
+
+    <!--    同时获取user_address和user_account的信息-->
+    <select id="selectUserTotal" resultMap="userTotal">
+        SELECT u.*,
+        acc.id as acc_id, acc.user_id as acc_user_id, acc.account_type , acc.account_balance,
+        addr.id as addr_id, addr.user_id as addr_user_id, addr.address, addr.post_code
+        FROM user u LEFT JOIN user_account acc  ON u.id = acc.user_id
+        LEFT JOIN user_address addr ON  u.id = addr.user_id
+        WHERE u.id = #{userId}
+    </select>
+
+    <resultMap id="userTotal" type="com.kangda.po.User">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="age" column="age"/>
+        <result property="email" column="email"/>
+
+        <association property="userAddress" javaType="com.kangda.po.UserAddress">
+            <id property="id" column="addr_id"/>
+            <result property="userId" column="addr_user_Id"/>
+            <result property="address" column="address"/>
+            <result property="postCode" column="post_code"/>
+        </association>
+
+        <collection property="userAccountList" ofType="com.kangda.po.UserAccount">
+            <id property="id" column="acc_id"/>
+            <result property="userId" column="acc_user_id"/>
+            <result property="accountType" column="account_type"/>
+            <result property="accountBalance" column="account_balance"/>
+        </collection>
+    </resultMap>
 </mapper>
