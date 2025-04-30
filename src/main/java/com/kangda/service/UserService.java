@@ -13,4 +13,8 @@ public interface UserService extends IService<User> {
     public boolean transfer(Long userIdFrom, Long userIdTo, Double amount);
 
     public User getUserTotal(Long userId);
+
+    public User getUserWithCache(Long userId);
+
+    public void deleteUserWithCatch(Long userId);
 }

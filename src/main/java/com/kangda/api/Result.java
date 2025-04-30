@@ -38,6 +38,10 @@ public class Result<T> {
     public static Result success(){
         return new Result(SUCCESS, "操作成功", null);
     }
+
+    public static Result success(String msg){
+        return new Result(SUCCESS, msg, null);
+    }
     //操作失败，返回错误消息
     public static Result error(String errMsg){
         return new Result(ERROR, errMsg, null);

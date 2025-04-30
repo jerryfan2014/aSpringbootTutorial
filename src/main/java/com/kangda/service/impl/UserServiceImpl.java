@@ -7,6 +7,8 @@ import com.kangda.po.User;
 import com.kangda.po.UserAccount;
 import com.kangda.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,6 +24,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
 
     @Autowired
     UserAccountMapper userAccountMapper;
+
 
     @Override
     public boolean updateEmails() {
@@ -120,5 +123,18 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
     @Override
     public User getUserTotal(Long userId) {
         return userMapper.selectUserTotal(userId);
+    }
+
+    @Override
+    @Cacheable(cacheNames = "user", unless = "#Result == null",condition = "#userId > 10")
+    public User getUserWithCache(Long userId) {
+//        return userMapper.selectById(userId);
+        return this.getById(userId);
+    }
+
+    @Override
+    @CacheEvict(value = "user")
+    public void deleteUserWithCatch(Long userId) {
+        userMapper.deleteById(userId);
     }
 }

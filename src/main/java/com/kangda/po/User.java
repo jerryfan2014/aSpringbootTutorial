@@ -6,11 +6,12 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.List;
 
 //@Data
 @TableName("user")
-public class User {
+public class User implements Serializable {
 
     //设置主键id为自增长字段；另外，还需要在数据表中设置字段为自增长
     @TableId(value="id", type = IdType.AUTO)
