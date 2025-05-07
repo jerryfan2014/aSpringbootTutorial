@@ -21,6 +21,17 @@ public class User implements Serializable {
     private Integer age;
     private String email;
 
+    //用户图像文件路径
+    private String photoPath;
+
+    public String getPhotoPath() {
+        return photoPath;
+    }
+
+    public void setPhotoPath(String photoPath) {
+        this.photoPath = photoPath;
+    }
+
     @TableField(exist = false)
     private UserAddress userAddress;
 
