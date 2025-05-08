@@ -94,7 +94,7 @@ public class UserController {
 
 
     private String FILE_UPLOADED_DIR = "uploadedFiles";
-    @PostMapping("/file/upload")
+    @PostMapping("/uploadUserPhoto")
     public String uploadFile(@RequestParam("file") MultipartFile uploadedFile,
                              @RequestParam Long userId){
         //判断上传文件是否为空
@@ -112,6 +112,10 @@ public class UserController {
 
             //推荐方法2、springboot优化；效率高，安全
             uploadedFile.transferTo(destFilePath);
+            //把上传文件的路径和用户关联起来（把用户的图片路径存到数据库）
+            User user = userService.getById(userId);
+            user.setPhotoPath(destFilePath.toString());
+            userService.saveOrUpdate(user);
 
             return "文件上传成功";
         } catch (IOException e) {

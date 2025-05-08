@@ -14,7 +14,12 @@ public class HelloController {
     @GetMapping("/hello")
     public String hello(@RequestParam String msg){
 //        return "hello, springboooooo!";
-        return msg;
+        return "msg参数值是：" + msg;
+    }
+
+    @GetMapping("/hello2")
+    public String hello2(){
+        return "hello, spring boot!";
     }
 
 
