@@ -16,6 +16,11 @@ spring:
       max-file-size: 10240000
       max-request-size: 60000000
       enabled: true
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
 
 mybatis-plus:
   configuration:

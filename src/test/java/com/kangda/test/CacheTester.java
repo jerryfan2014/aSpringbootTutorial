@@ -1,8 +1,7 @@
 package com.kangda.test;
 
 import com.kangda.po.User;
-import com.kangda.service.UserService;
-import com.kangda.service.impl.UserServiceImpl;
+import com.kangda.service.db.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -2,7 +2,8 @@ package com.kangda.test;
 
 
 import com.kangda.po.User;
-import com.kangda.service.UserService;
+import com.kangda.service.db.OrderService;
+import com.kangda.service.db.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -65,5 +66,13 @@ public class MPServiceTester {
     @Test
     public void testTransfer(){
         userService.transfer(1L, 1L, 1000d);
+    }
+
+    @Autowired
+    private OrderService orderService;
+    @Test
+    public void testOrder(){
+        Long val = orderService.getOrdersAdded(0L);
+        System.out.println("新增订单：" + val);
     }
 }
