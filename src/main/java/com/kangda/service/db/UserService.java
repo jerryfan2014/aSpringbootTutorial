@@ -1,4 +1,4 @@
-package com.kangda.service;
+package com.kangda.service.db;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.kangda.po.User;

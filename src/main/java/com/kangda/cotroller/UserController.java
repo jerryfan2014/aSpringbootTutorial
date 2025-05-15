@@ -3,7 +3,7 @@ package com.kangda.cotroller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.kangda.dto.SearchParam;
 import com.kangda.po.User;
-import com.kangda.service.UserService;
+import com.kangda.service.db.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
